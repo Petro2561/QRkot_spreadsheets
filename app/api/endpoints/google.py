@@ -37,7 +37,5 @@ async def get_report(
         projects,
     )
     return {
-        "url": "https://docs.google.com/spreadsheets/d/{spreadsheetid}".format(
-            spreadsheetid=spreadsheet_id
-        )
+        "url": f'https://docs.google.com/spreadsheets/d/{spreadsheet_id}'
     }

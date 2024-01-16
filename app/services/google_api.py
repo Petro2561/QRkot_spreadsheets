@@ -14,26 +14,41 @@ TABLE_VALUES = [
     ["Название проекта", "Время сбора", "Описание"],
 ]
 
+REPORT_NAME = 'Отчет от {current_date_time}'
+SHEETS_LOCALE = 'ru_RU'
+SHEETS_TITLE = 'Лист1'
+SHEETS_TYPE = 'GRID'
+
+SHEETS_COLUMNS_NUMBER = 5
+SHEETS_ROWS_NUMBER = 100
+
+SHEETS_PROPERTIES = dict(
+    sheetType=SHEETS_TYPE,
+    sheetId=0,
+    title=SHEETS_TITLE,
+    gridProperties= dict(
+        rowCount=SHEETS_ROWS_NUMBER,
+        columnCount=SHEETS_COLUMNS_NUMBER,
+    )
+)
+
+SPREADSHEET_BODY = dict(
+    properties=dict(
+        title=REPORT_NAME,
+        locale=SHEETS_LOCALE
+    ),
+    sheets=[dict(
+        properties=SHEETS_PROPERTIES
+    )]
+)
+
 
 async def spreadsheet_create(
     wrapper_services: Aiogoogle, spreadsheet_body: Optional[Dict] = None
 ) -> str:
     service = await wrapper_services.discover("sheets", "v4")
-    spreadsheet_body = {
-        "properties": {"title": "QRKot", "locale": "ru_RU"},
-        "sheets": [
-            {
-                "properties": {
-                    "sheetType": "GRID",
-                    "sheetId": 0,
-                    "title": "Проекты",
-                    "gridProperties": {"rowCount": 50, "columnCount": 5},
-                }
-            }
-        ],
-    }
     response = await wrapper_services.as_service_account(
-        service.spreadsheets.create(json=spreadsheet_body)
+        service.spreadsheets.create(json=SPREADSHEET_BODY)
     )
     spreadsheet_id = response["spreadsheetId"]
     return spreadsheet_id
