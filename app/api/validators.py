@@ -49,8 +49,8 @@ async def check_updating_project(
     charity_project = await check_charity_project_exists(project_id, session)
     await check_name_duplicate(obj_in.name, session)
     if (
-        obj_in.full_amount
-        and obj_in.full_amount < charity_project.invested_amount
+        obj_in.full_amount and
+        obj_in.full_amount < charity_project.invested_amount
     ):
         raise HTTPException(
             status_code=HTTPStatus.UNPROCESSABLE_ENTITY,

@@ -1,6 +1,6 @@
 import copy
-from datetime import datetime, timedelta
-from typing import Dict, List, Optional
+from datetime import datetime
+from typing import Dict, Optional
 
 from aiogoogle import Aiogoogle
 
