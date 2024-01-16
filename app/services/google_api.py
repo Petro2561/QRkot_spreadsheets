@@ -26,7 +26,7 @@ SHEETS_PROPERTIES = dict(
     sheetType=SHEETS_TYPE,
     sheetId=0,
     title=SHEETS_TITLE,
-    gridProperties= dict(
+    gridProperties=dict(
         rowCount=SHEETS_ROWS_NUMBER,
         columnCount=SHEETS_COLUMNS_NUMBER,
     )
